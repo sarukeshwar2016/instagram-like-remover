@@ -1,3 +1,24 @@
+/**
+ * Instagram Like Remover
+ *
+ * Removes likes from posts currently displayed by Instagram's
+ * Your Activity → Interactions → Likes page.
+ *
+ * IMPORTANT:
+ * - Instagram's Sort & Filter date range should be configured manually
+ *   before running this script.
+ * - The script processes up to 50 likes per batch.
+ * - The script repeats until no more selectable likes are available.
+ * - This script is not affiliated with or endorsed by Meta or Instagram.
+ *
+ * Tested with:
+ * Instagram web interface
+ *
+ * WARNING:
+ * Instagram may change its DOM/UI at any time, which can cause this
+ * script to stop working or behave unexpectedly. Review the source
+ * before running it.
+ */
 (async function () {
 
     const BATCH_SIZE = 50;

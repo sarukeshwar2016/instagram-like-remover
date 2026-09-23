@@ -19,13 +19,16 @@
  * script to stop working or behave unexpectedly. Review the source
  * before running it.
  */
+
 (async function () {
 
     const BATCH_SIZE = 50;
 
     const CLICK_DELAY = 150;
     const WAIT_AFTER_SELECT = 1500;
-    const WAIT_AFTER_UNLIKE = 5000;
+
+    // Mandatory 10-second wait after confirming Unlike
+    const WAIT_AFTER_UNLIKE = 10000;
 
     const SELECT_RETRIES = 30;
     const RETRY_DELAY = 1000;
@@ -417,17 +420,23 @@
 
 
         // -------------------------------------
-        // Wait for Instagram to process
+        // MANDATORY 10-SECOND WAIT
         // -------------------------------------
 
         console.log(
             `Removing ${amount} likes...`
         );
 
-
-        await delay(
-            WAIT_AFTER_UNLIKE
+        console.log(
+            "Waiting 10 seconds before starting the next batch..."
         );
+
+
+        // This wait ALWAYS happens after confirmation.
+        // It does not matter whether Instagram has already
+        // visually removed the likes or Select has appeared.
+
+        await delay(10000);
 
 
         console.log(
@@ -436,12 +445,12 @@
 
 
         // -------------------------------------
-        // IMPORTANT:
-        // Don't stop here.
-        //
-        // The loop automatically goes back
-        // to the top and searches for Select.
+        // Continue to next batch
         // -------------------------------------
+
+        console.log(
+            "10-second wait completed."
+        );
 
         console.log(
             "Waiting for next batch..."
